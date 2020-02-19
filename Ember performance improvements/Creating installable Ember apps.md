@@ -41,7 +41,7 @@ Let's check Lighthouse measurements now and here's what you would see
         <noscript>Some content here for your page without JavaScript</noscript>
 
 2. To fix the PNG icon, you can just add an image in your config/manifest.js and it should be resolved. This is the config that I have added to the config/manifest.js. Make sure to replace the images with your Ember app's.
-
+```
     'use strict';
     
     module.exports = function(/* environment, appConfig */) {
@@ -72,7 +72,7 @@ Let's check Lighthouse measurements now and here's what you would see
         }
       };
     }
-
+```
 Based on the above fixes you should have most green except for the HTTPS redirection.
 
 ![Creating%20installable%20Ember%20apps/Untitled%204.png](Creating%20installable%20Ember%20apps/Untitled%204.png)
