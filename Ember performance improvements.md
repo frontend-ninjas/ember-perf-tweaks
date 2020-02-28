@@ -27,6 +27,7 @@ Key areas to optimize Ember apps:
 3. Building and optimising your Ember app for SEO.
 4. Improving accessibility of your Ember apps.
 5. Making your Ember apps installable.
+6. Improving your Ember developer build timelines.
 
 ## Building a sample app:
 
@@ -46,3 +47,5 @@ Key areas to optimize Ember apps:
 [Improving Accessibility](Ember%20performance%20improvements/Improving%20Accessibility.md)
 
 [Creating installable Ember apps](Ember%20performance%20improvements/Creating%20installable%20Ember%20apps.md)
+
+[Speeding up ember-cli builds](Ember%20build%20improvements/Removing%20tests%20from%20dev%20build.md)
