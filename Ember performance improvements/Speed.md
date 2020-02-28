@@ -17,24 +17,24 @@ First and foremost, like every asset that the app’s index.html consumes, need 
     // ember-cli-build.js
     
     module.exports = function(defaults) {
-        // ...
-        const isProduction = EmberApp.env() === 'production';
+      // ...
+      const isProduction = EmberApp.env() === 'production';
         
-        let app = new EmberApp(defaults, {
-          fingerprint: {
-            enabled: isProduction // Enabled in production by default until you override.
-          },
-          minifyJS: {
-            enabled: isProduction // Enabled in production by default until you override.
-          },
-          minifyCSS: {
-            enabled: isProduction // Enabled in production by default until you override.
-          }
-        });
+      let app = new EmberApp(defaults, {
+        fingerprint: {
+          enabled: isProduction // Enabled in production by default until you override.
+        },
+        minifyJS: {
+          enabled: isProduction // Enabled in production by default until you override.
+        },
+        minifyCSS: {
+          enabled: isProduction // Enabled in production by default until you override.
+        }
+      });
     
-        // ...
+      // ...
     
-        return app.toTree();
+      return app.toTree();
     };
 
 You don’t have to generally worry about this configuration as Ember takes care of it for you for prod builds.
