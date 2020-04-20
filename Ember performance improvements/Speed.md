@@ -1,41 +1,71 @@
 # Speed
 
-# Improving on build size and making your builds faster
+## Improving on build size and making your builds faster
+
+### Removing tests from dev build
+
+When you run
+```
+ember b
+```
+
+or 
+
+```
+ember s
+```
+the build is run on `development` environment until you mark it as production build by default.
+
+But internally, ember-cli adds the test files as well with your development build since, you can access them using `http://localhost:4200/tests`. But most of the times, we generally run
+```
+ember test
+```
+for validating test cases. In development build scenario, if you do not generally use `/tests` path, we can remove them from the development build. In order to eliminate unnecessary set of test files being part of the dev build and slowing things down, you can remove them by using the following configuration
+
+```js
+let app = new EmberApp(defaults, {
+  tests: false,
+  ...
+});
+```
 
 ### Minification, Gzip or Brotli compression and Fingerprinting.
 
 Make sure your builds are done with `production` flag turned on.
-
-    ember b -p
-    # or
-    ember build --prod
-    # or
-    ember build --environment=production
+```
+ember b -p
+# or
+ember build --prod
+# or
+ember build --environment=production
+```
 
 First and foremost, like every asset that the app’s index.html consumes, need to be minified and gzipp’ed. In Ember, your app could be configured to do so using the following lines of code:
 
-    // ember-cli-build.js
-    
-    module.exports = function(defaults) {
-      // ...
-      const isProduction = EmberApp.env() === 'production';
-        
-      let app = new EmberApp(defaults, {
-        fingerprint: {
-          enabled: isProduction // Enabled in production by default until you override.
-        },
-        minifyJS: {
-          enabled: isProduction // Enabled in production by default until you override.
-        },
-        minifyCSS: {
-          enabled: isProduction // Enabled in production by default until you override.
-        }
-      });
-    
-      // ...
-    
-      return app.toTree();
-    };
+```js
+// ember-cli-build.js
+
+module.exports = function(defaults) {
+  // ...
+  const isProduction = EmberApp.env() === 'production';
+
+  let app = new EmberApp(defaults, {
+    fingerprint: {
+      enabled: isProduction // Enabled in production by default until you override.
+    },
+    minifyJS: {
+      enabled: isProduction // Enabled in production by default until you override.
+    },
+    minifyCSS: {
+      enabled: isProduction // Enabled in production by default until you override.
+    }
+  });
+
+  // ...
+
+  return app.toTree();
+};
+```
 
 You don’t have to generally worry about this configuration as Ember takes care of it for you for prod builds.
 
@@ -51,8 +81,9 @@ It helps you to
 - Optimize your bundle size
 
 Install this addon using the following command:
-
-    ember install ember-cli-bundle-analyzer
+```
+ember install ember-cli-bundle-analyzer
+```
 
 Once done, navigate to [http://localhost:4200/_analyze](http://localhost:4200/_analyz) in your web browser to analyze the output.
 
@@ -70,13 +101,16 @@ It is at 591Kb
 
 To get started with ember-auto-import:
 
-    npm install --save-dev lodash-es # Adds lodash-es for example to your dependencies
-    
-    ember install ember-auto-import
+```
+npm install --save-dev lodash-es # Adds lodash-es for example to your dependencies
+
+ember install ember-auto-import
+```
 
 And go ahead and say in your components or controllers or any parts of your code.
-
-    import { capitalize } from 'lodash-es';
+```js
+import { capitalize } from 'lodash-es';
+```
 
 Wait, vendor.js just got increased by ~200Kb while doing the above steps 😱
 
@@ -91,38 +125,43 @@ Didn't we say we wanted to reduce the vendor.js size? Yes, for which you need to
 Dynamic import is currently a Stage 3 ECMA feature, so to use it there are a few extra setup steps:
 
 1. Install babel-eslint
-
-        npm install --save-dev babel-eslint
+```
+npm install --save-dev babel-eslint
+```
 
 2. In your .eslintrc.js file, add
 
-        parser: 'babel-eslint'
+```js
+parser: 'babel-eslint'
+```
 
 3. In your ember-cli-build.js file, enable the babel plugin provided by ember-auto-import:
-
-        let app = new EmberApp(defaults, {
-          babel: {
-            plugins: [ require.resolve('ember-auto-import/babel-plugin') ]
-          }
-        });
+```js
+let app = new EmberApp(defaults, {
+  babel: {
+    plugins: [ require.resolve('ember-auto-import/babel-plugin') ]
+  }
+});
+```
 
 4. Now all you need to do is, just dynamically import the dependency. For example:
+```js
+import Route from '@ember/routing/route';
 
-        import Route from '@ember/routing/route';
-        
-        export default class SampleInnerRoute extends Route {
-          model() { // This will be render-blocking, you can also move this to your controller' or component' JS file
-            return import('lodash-es').then(({ capitalize }) => {
-              return capitalize('Sample App');
-            });
-          }
-        }
+export default class SampleInnerRoute extends Route {
+  model() { // This will be render-blocking, you can also move this to your controller' or component' JS file
+    return import('lodash-es').then(({ capitalize }) => {
+      return capitalize('Sample App');
+    });
+  }
+}
+```
 
-    ![Speed/Untitled%202.png](Speed/Untitled%202.png)
+![Speed/Untitled%202.png](Speed/Untitled%202.png)
 
-    Moving to dynamic imports brought it back down to 592Kb.
+Moving to dynamic imports brought it back down to 592Kb.
 
-    For more on this addon, [read here.](https://github.com/ef4/ember-auto-import)
+For more on this addon, [read here.](https://github.com/ef4/ember-auto-import)
 
 ## Measure Rendering Performance
 
