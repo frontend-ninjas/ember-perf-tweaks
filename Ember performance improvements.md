@@ -38,7 +38,7 @@ Key areas to optimize Ember apps:
 
 ## Getting started with Performance optimisations
 
-[Speed](Ember%20performance%20improvements/Speed.md)
+[Improving speed](Ember%20performance%20improvements/Speed.md)
 
 [Caching assets using Service workers](Ember%20performance%20improvements/Caching%20assets%20using%20Service%20workers.md)
 
@@ -47,5 +47,3 @@ Key areas to optimize Ember apps:
 [Improving Accessibility](Ember%20performance%20improvements/Improving%20Accessibility.md)
 
 [Creating installable Ember apps](Ember%20performance%20improvements/Creating%20installable%20Ember%20apps.md)
-
-[Speeding up ember-cli builds](Ember%20build%20improvements/Removing%20tests%20from%20dev%20build.md)
