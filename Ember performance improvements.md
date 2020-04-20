@@ -68,7 +68,7 @@ $ npm start
 3. As the instructions mentions, let's do `cd <application-name>` and say `npm start`.
 
 ```
-Build successful (13202ms) – Serving on http://localhost:4200/
+Build successful (5300ms) – Serving on http://localhost:4200/
 ...
 ```
 
@@ -76,8 +76,10 @@ Build successful (13202ms) – Serving on http://localhost:4200/
 
 ### Getting started with Performance optimisations
 
-Here're the topics that will be covered over the next set of posts:
-1. [Speed](ember-performance-tweaks-part-2)
-3. SEO friendly pages
-4. Improving Accessibility
-5. Creating installable Ember apps and caching assets using Service workers
+Here're the topics that will be covered in this series:
+
+1. [Improving speed](Ember%20performance%20improvements/Speed.md)
+2. [Caching assets using Service workers](Ember%20performance%20improvements/Caching%20assets%20using%20Service%20workers.md)
+3. [SEO friendly pages](Ember%20performance%20improvements/SEO%20friendly%20pages.md)
+4. [Improving Accessibility](Ember%20performance%20improvements/Improving%20Accessibility.md)
+5. [Creating installable Ember apps](Ember%20performance%20improvements/Creating%20installable%20Ember%20apps.md)
